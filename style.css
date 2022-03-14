@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    min-height: 100vh;
+    color: white;
+    background-color: #0c0c64;
+    opacity: 1;
+    background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #0c0c64 40px ), repeating-linear-gradient( #4500ff55, #4500ff );
+
+
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 90vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.margin {
+    margin: 12px;
+}
+
+.marginB {
+    margin: 50px;
+}
