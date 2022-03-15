@@ -6,9 +6,8 @@
 body {
     min-height: 100vh;
     color: white;
-    background-color: #0c0c64;
-    opacity: 1;
-    background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #0c0c64 40px ), repeating-linear-gradient( #4500ff55, #4500ff );
+    background: rgb(18,13,52);
+    background: linear-gradient(159deg, rgba(18,13,52,1) 0%, rgba(10,101,142,1) 100%, rgba(0,212,255,1) 100%);
 
 
 }
