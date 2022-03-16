@@ -1,5 +1,7 @@
 const buttonData = document.getElementById('enviarData')
 let clicks = 0
+const progressBar = document.querySelector('progress')
+let progressBarValue = 1
 
 buttonData.onclick = function countdown() {
 
@@ -11,13 +13,20 @@ buttonData.onclick = function countdown() {
     // Convertendo o formato do valor passado ao new Date a seguir para que não dê problema com fuso horario
     const dataValueFormat = data.value.replaceAll('-', ',')
     const dataInserida = new Date(dataValueFormat).getTime()
-        
+
+    // Valor máximo da barra de progresso
+    const progressBarMax = dataInserida - new Date().getTime()
+    progressBar.setAttribute("max", progressBarMax/1000) 
+
+
     const x = setInterval(function () {
 
         const dataAtual = new Date().getTime()
-
-
         let distancia = dataInserida - dataAtual
+
+        //Barra de progresso aumentando o valor a cada segundo
+        progressBar.setAttribute("value", progressBarValue++)
+        console.log(progressBar)
 
         //Transformando os milissegundos em dias/horas/minutos/segundos
         const days = Math.floor(distancia/ (1000 * 60 * 60 * 24))
@@ -49,5 +58,5 @@ buttonData.onclick = function countdown() {
         }
     }, 1000)
 
-    
+   
 }

@@ -20,6 +20,13 @@ body {
     justify-content: center;
 }
 
+progress {
+    accent-color: rgb(167, 167, 219);
+    width: 30vw;
+    min-width: 400px;
+    height: 28px;
+}
+
 .flex {
     display: flex;
     justify-content: center;
