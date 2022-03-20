@@ -31,12 +31,12 @@ buttonData.onclick = function countdown() {
 
     const x = setInterval(function () {
 
-        const dataAtual = new Date().getTime()
-        let difference = insertedDate - dataAtual
+        const currentDate = new Date().getTime()
+        let difference = insertedDate - currentDate
 
         // Barra de progresso aumentando o valor a cada segundo
         progressBar.setAttribute("value", progressBarValue++)
-        //console.log(progressBar)
+        console.log(progressBar, 'fora do refreshe')
 
         // Transformando os milissegundos em dias/horas/minutos/segundos
         const days = Math.floor(difference/ (1000 * 60 * 60 * 24))
@@ -81,16 +81,17 @@ if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
     insertedDate = storedDateNumber
 
     if (insertedDate > 0){
-        progressBar.setAttribute("max", (insertedDate - new Date().getTime()/1000))
+        const progressBarMax = insertedDate - new Date().getTime()
+        progressBar.setAttribute("max", progressBarMax/1000)
         
         y = setInterval(function () {
             
-            const dataAtual = new Date().getTime()
-            let difference = insertedDate - dataAtual
+            const currentDate = new Date().getTime()
+            let difference = insertedDate - currentDate
             
             // Barra de progresso aumentando o valor a cada segundo
             progressBar.setAttribute("value", progressBarValue++)
-            // Console.log(progressBar, 'refresh')
+            console.log(progressBar, 'refresh')
             
             // Transformando os milissegundos em dias/horas/minutos/segundos
             const days = Math.floor(difference/ (1000 * 60 * 60 * 24))
