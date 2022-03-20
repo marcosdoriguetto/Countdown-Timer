@@ -33,8 +33,23 @@ progress {
     align-items: center;
 }
 
-.margin {
+.startButton, .localStorageButton {
     margin: 12px;
+    background:linear-gradient(to bottom, #63b8ee 5%, #468ccf 100%);
+    background-color:#63b8ee;
+    border-radius:10px;
+    border:1px solid #3866a3;
+    display:inline-block;
+    cursor:pointer;
+    color:#14396a;
+    font-family:Arial;
+    font-size:20px;
+    padding:5px 25px;
+    text-decoration:none;
+}
+
+.margin {
+    margin: 20px;
 }
 
 .marginB {
