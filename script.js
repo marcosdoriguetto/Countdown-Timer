@@ -7,22 +7,31 @@ let insertedDate
 let y
 
 buttonData.onclick = function countdown() {
-
     clicks++
+
     // Resetando para não manter nada do valor salvo anteriormente no cache
     clearInterval(y)
     progressBarValue = 0
 
     const data = document.getElementById('dataAlvo')
 
+    // Salvando a data atual do momento que o botão for clicado
+    localStorage.setItem('startDate', new Date().getTime())
+
+    // Salvando o valor inserido no input para inserir no refresh
+    localStorage.setItem('inputValue', data.value)
+
+    //console.log(data.value, 'aqui')
+
     // Convertendo o formato do valor passado ao new Date a seguir para que não dê problema com fuso horario
     const dataValueFormat = data.value.replaceAll('-', ',')
     insertedDate = new Date(dataValueFormat).getTime()
 
+    // Salvando a data em milissegundos
     localStorage.setItem('insertedDate', insertedDate)
-    console.log(insertedDate)
+    //console.log(insertedDate)
     const storedDateNumber = Number(localStorage.getItem('insertedDate'))
-    console.log(storedDateNumber, 'storedDateNumber')
+    //console.log(storedDateNumber, 'storedDateNumber')
 
     // Valor máximo da barra de progresso
     const progressBarMax = insertedDate - new Date().getTime()
@@ -36,7 +45,7 @@ buttonData.onclick = function countdown() {
 
         // Barra de progresso aumentando o valor a cada segundo
         progressBar.setAttribute("value", progressBarValue++)
-        console.log(progressBar, 'fora do refreshe')
+        //console.log(progressBar, 'fora do refreshe')
 
         // Transformando os milissegundos em dias/horas/minutos/segundos
         const days = Math.floor(difference/ (1000 * 60 * 60 * 24))
@@ -75,23 +84,35 @@ buttonData.onclick = function countdown() {
 if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
     //console.log('recarregou')
 
-    
     const storedDateNumber = Number(localStorage.getItem('insertedDate'))
 
     insertedDate = storedDateNumber
 
+    // Valor a ser inserido no input, data anteriormente inserida ao clicar no botão
+    const inputValue = localStorage.getItem('inputValue')
+
+    // Atribuindo o valor ao input
+    const data = document.getElementById('dataAlvo')
+    data.setAttribute("value", inputValue)
+    
+
     if (insertedDate > 0){
-        const progressBarMax = insertedDate - new Date().getTime()
+
+
+        const progressBarMax = insertedDate - localStorage.getItem('startDate')
         progressBar.setAttribute("max", progressBarMax/1000)
+
+        // Atributo value da barra de progresso sendo definido para que em cada refresh ele não zere e continue contando
+        progressBarValue = progressBarValue + (new Date().getTime() - localStorage.getItem('startDate'))/1000
         
         y = setInterval(function () {
             
             const currentDate = new Date().getTime()
             let difference = insertedDate - currentDate
             
-            // Barra de progresso aumentando o valor a cada segundo
+            // Configurando o value da barra de progresso
             progressBar.setAttribute("value", progressBarValue++)
-            console.log(progressBar, 'refresh')
+            //console.log(progressBar, 'refresh')
             
             // Transformando os milissegundos em dias/horas/minutos/segundos
             const days = Math.floor(difference/ (1000 * 60 * 60 * 24))
