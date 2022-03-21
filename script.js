@@ -45,7 +45,7 @@ buttonData.onclick = function countdown() {
 
         // Barra de progresso aumentando o valor a cada segundo
         progressBar.setAttribute("value", progressBarValue++)
-        //console.log(progressBar, 'fora do refreshe')
+        //console.log(progressBar, 'fora do refresh')
 
         // Transformando os milissegundos em dias/horas/minutos/segundos
         const days = Math.floor(difference/ (1000 * 60 * 60 * 24))
@@ -99,7 +99,8 @@ if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
     if (insertedDate > 0){
 
 
-        const progressBarMax = insertedDate - localStorage.getItem('startDate')
+        const progressBarMax = insertedDate - Number(localStorage.getItem('startDate'))
+
         progressBar.setAttribute("max", progressBarMax/1000)
 
         // Atributo value da barra de progresso sendo definido para que em cada refresh ele não zere e continue contando
